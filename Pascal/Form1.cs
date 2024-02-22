@@ -9,10 +9,16 @@ namespace Pascal
             {
                 for (int oszlop = 0; oszlop <= 10; oszlop++)
                 {
+                    /*
                     int eltol = sor * 30;
                     Button b = new Button();
                     b.Top = sor * 60;
-                    b.Left = oszlop * 60 - eltol;
+                    if (sor == 0)
+                    {
+                        b.Left = ClientRectangle.Width / 2 - 30;
+                    }
+                    else b.Left = ClientRectangle.Width / 2 - 30 - oszlop * 60 + sor * 30;
+                    b.Left = oszlop * 60; - eltol;
                     b.Height = 60;
                     b.Width = 60;
                     this.Controls.Add(b);
@@ -21,9 +27,26 @@ namespace Pascal
                     {
                         b.Text = p.ToString();
                     }
+                    */
 
-                    
-                    
+
+                    int p = Faktorialis(sor) / (Faktorialis(oszlop) * (Faktorialis(sor - oszlop)));
+                    if (p != 0)
+                    {
+                        Button b = new Button();
+                        b.Top = sor * 60;
+                        if (sor == 0)
+                        {
+                            b.Left = ClientRectangle.Width / 2 - 30;
+                        }
+                        else b.Left = ClientRectangle.Width / 2 - 30 - oszlop * 60 + sor * 30;
+                        b.Height = 60;
+                        b.Width = 60;
+                        this.Controls.Add(b);
+                        b.Text = p.ToString();
+                    }
+
+
                 }
 
             }
