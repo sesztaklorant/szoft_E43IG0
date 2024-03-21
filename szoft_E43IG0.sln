@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci", "Fibonacci\Fibo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pascal", "Pascal\Pascal.csproj", "{607ED961-BA82-4125-819B-FEC8DC029EC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3ora1feladat", "3ora1feladat\3ora1feladat.csproj", "{9AF34A2E-4446-452D-B6D5-5AA4344ED19D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3ora1feladat", "3ora1feladat\3ora1feladat.csproj", "{9AF34A2E-4446-452D-B6D5-5AA4344ED19D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigyos_jatek", "Kigyos_jatek\Kigyos_jatek.csproj", "{5E259592-D3A7-459A-BD29-07AEF836CD38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9AF34A2E-4446-452D-B6D5-5AA4344ED19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AF34A2E-4446-452D-B6D5-5AA4344ED19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AF34A2E-4446-452D-B6D5-5AA4344ED19D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E259592-D3A7-459A-BD29-07AEF836CD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E259592-D3A7-459A-BD29-07AEF836CD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E259592-D3A7-459A-BD29-07AEF836CD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E259592-D3A7-459A-BD29-07AEF836CD38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
