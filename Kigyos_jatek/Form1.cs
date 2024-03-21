@@ -2,6 +2,8 @@ namespace Kigyos_jatek
 {
     public partial class Form1 : Form
     {
+        Random rnd = new Random();
+
         int fej_x = 100;
         int fej_y = 100;
 
@@ -11,6 +13,10 @@ namespace Kigyos_jatek
         int irány_y = 0;
 
         List<KígyóElem> kígyó = new List<KígyóElem>();
+
+        List<Alma> almak = new List<Alma>();
+
+        List<Mereg> mergek = new List<Mereg>();
 
         int lépésszám;
         public Form1()
@@ -31,9 +37,6 @@ namespace Kigyos_jatek
 
             }
             */
-
-            
-            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -44,13 +47,27 @@ namespace Kigyos_jatek
             fej_x += irány_x * KígyóElem.Méret;
             fej_y += irány_y * KígyóElem.Méret;
 
-            foreach (KígyóElem item in Controls)
+            /*foreach (KígyóElem item in Controls)
             {
                 //Ha van már valami ott, ahova az új fejet tenném, vége a játéknak
                 if (item.Top == fej_y && item.Left == fej_x)
                 {
                     timer1.Enabled = false;
                     return;
+                }
+            }*/
+
+            foreach (object item in Controls)
+            {
+                if (item is KígyóElem)
+                {
+                    KígyóElem k = (KígyóElem)item;
+
+                    if (k.Top == fej_y && k.Left == fej_x)
+                    {
+                        timer1.Enabled = false;
+                        return;
+                    }
                 }
             }
 
@@ -67,12 +84,33 @@ namespace Kigyos_jatek
             {
                 //KígyóElem levágandó = Controls.RemoveAt(0);
                 KígyóElem levágandó = kígyó[0];
-                Controls.RemoveAt(0);
+                //Controls.RemoveAt(0);
 
-                //
+                //alma mereg
+                kígyó.RemoveAt(0);
+                Controls.Remove(levágandó);
             }
 
             if (lépésszám % 2 == 0) ke.BackColor = Color.Yellow;
+
+            if(lépésszám % 10 == 0)
+            {
+                Alma alma = new Alma();
+                alma.Top = (rnd.Next(ClientRectangle.Height / 20) * 20) + 5;
+                alma.Left = (rnd.Next(ClientRectangle.Width / 20) * 20) + 5;
+                almak.Add(alma);
+                Controls.Add(alma);
+                
+            }
+
+            if (lépésszám % 20 == 0)
+            {
+                Mereg mereg = new Mereg();
+                mereg.Top = (rnd.Next(ClientRectangle.Height / 20) * 20) + 5;
+                mereg.Left = (rnd.Next(ClientRectangle.Width / 20) * 20) + 5;
+                mergek.Add(mereg);
+                Controls.Add(mereg);
+            }
 
         }
 
@@ -101,6 +139,28 @@ namespace Kigyos_jatek
                 irány_y = 0;
                 irány_x = 1;
             }
+        }
+    }
+
+    class Alma : PictureBox
+    {
+        public static int Méret = 10;
+        public Alma()
+        {
+            Width = Alma.Méret;
+            Height = Alma.Méret;
+            BackColor = Color.Red;
+        }
+    }
+
+    class Mereg : PictureBox
+    {
+        public static int Méret = 10;
+        public Mereg()
+        {
+            Width = Mereg.Méret;
+            Height = Mereg.Méret;
+            BackColor = Color.Green;
         }
     }
 }

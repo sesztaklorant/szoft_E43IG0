@@ -16,7 +16,6 @@ namespace Kigyos_jatek
             Height = KígyóElem.Méret;
             BackColor = Color.Fuchsia;
 
-            
         }
     }
 
