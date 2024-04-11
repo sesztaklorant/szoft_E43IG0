@@ -15,6 +15,8 @@ namespace Kigyos_jatek
         List<KígyóElem> kígyó = new List<KígyóElem>();
 
         List<Alma> almak = new List<Alma>();
+        //Dictionary<int,Alma> almakonyvtar = new Dictionary<int, Alma>();
+        //int almaazonosito;
 
         List<Mereg> mergek = new List<Mereg>();
 
@@ -96,22 +98,60 @@ namespace Kigyos_jatek
             if(lépésszám % 10 == 0)
             {
                 Alma alma = new Alma();
-                alma.Top = (rnd.Next(ClientRectangle.Height / 20) * 20) + 5;
-                alma.Left = (rnd.Next(ClientRectangle.Width / 20) * 20) + 5;
-                almak.Add(alma);
-                Controls.Add(alma);
+                alma.Top = (rnd.Next(ClientRectangle.Height / 20) * 20);
+                alma.Left = (rnd.Next(ClientRectangle.Width / 20) * 20);
                 
+                almak.Add(alma);
+                //almakonyvtar.Add(almaazonosito, alma);
+
+                Controls.Add(alma);
+
+                //almaazonosito++;
+                
+            }
+
+            foreach (object item in Controls) 
+            {
+                if (item is Alma) 
+                {
+                    Alma a = (Alma)item;
+                    if (a.Top == fej_y && a.Left == fej_x)
+                    {
+                        Controls.Remove(a);
+                        hossz++;
+                        return;
+                    }
+                }
             }
 
             if (lépésszám % 20 == 0)
             {
                 Mereg mereg = new Mereg();
-                mereg.Top = (rnd.Next(ClientRectangle.Height / 20) * 20) + 5;
-                mereg.Left = (rnd.Next(ClientRectangle.Width / 20) * 20) + 5;
+                mereg.Top = (rnd.Next(ClientRectangle.Height / 20) * 20);
+                mereg.Left = (rnd.Next(ClientRectangle.Width / 20) * 20);
                 mergek.Add(mereg);
                 Controls.Add(mereg);
             }
 
+            foreach (object item in Controls)
+            {
+                if (item is Mereg)
+                {
+                    Mereg m = (Mereg)item;
+                    if (m.Top == fej_y && m.Left == fej_x)
+                    {
+                        Controls.Remove(m);
+                        hossz--;
+                        if (kígyó.Count > hossz)
+                        {
+                            KígyóElem levágandó = kígyó[0];
+                            kígyó.RemoveAt(0);
+                            Controls.Remove(levágandó);
+                        }
+                        return;
+                    }
+                }
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -144,7 +184,7 @@ namespace Kigyos_jatek
 
     class Alma : PictureBox
     {
-        public static int Méret = 10;
+        public static int Méret = 20;
         public Alma()
         {
             Width = Alma.Méret;
@@ -155,7 +195,7 @@ namespace Kigyos_jatek
 
     class Mereg : PictureBox
     {
-        public static int Méret = 10;
+        public static int Méret = 20;
         public Mereg()
         {
             Width = Mereg.Méret;
