@@ -47,7 +47,7 @@ namespace Adatbazis
 
             var eredmeny2 = students.Where(x => x.Name.Contains(text)); //jobb megoldása az elõbbinek
 
-            //eredmeny2 = student.eredmeny2.OrderBy(student => student.Name);
+            eredmeny2 = eredmeny2.OrderBy(student => student.Name);
 
             /*
             List<Student> eredmeny3 = new List<Student>();
@@ -64,7 +64,7 @@ namespace Adatbazis
 
             */
 
-            studentBindingSource.DataSource = eredmeny.ToList();
+            studentBindingSource.DataSource = eredmeny2.ToList();
         }
     }
 }
