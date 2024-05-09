@@ -14,6 +14,7 @@ namespace linq11
     public partial class UserControl2 : UserControl
     {
         StudiesContext context;
+        int rekordok = 0;
         public UserControl2()
         {
             InitializeComponent();
@@ -45,6 +46,8 @@ namespace linq11
 
             Course course = listBox1.SelectedItem as Course;
 
+            /*
+
             dataGridView1.DataSource = (from l in context.Lessons
                                         where l.CourseFk == course.CourseSk
                                         select new
@@ -54,6 +57,26 @@ namespace linq11
                                             Oktato = l.TimeFkNavigation.Name,
                                         }
                                         ).ToList();
+
+            */
+
+            var kurzusok = (from l in context.Lessons
+                                        where l.CourseFk == course.CourseSk
+                                        select new
+                                        {
+                                            Nap = l.DayFkNavigation.Name,
+                                            Sav = l.TimeFkNavigation.Name,
+                                            Oktato = l.TimeFkNavigation.Name,
+                                        }
+                                        ).ToList();
+
+            var adatok = kurzusok.ToList();
+
+            dataGridView1.DataSource = adatok;
+
+            rekordok = adatok.Count();
+
+            textBox2.Text = rekordok.ToString();
 
         }
     }

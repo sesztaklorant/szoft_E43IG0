@@ -28,5 +28,16 @@ namespace linq11
 
             userControl2.Dock = DockStyle.Fill;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+
+            UserControl3 userControl3 = new UserControl3();
+
+            panel1.Controls.Add(userControl3);
+
+            userControl3.Dock = DockStyle.Fill;
+        }
     }
 }
