@@ -30,6 +30,7 @@
         {
             panel1 = new Panel();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // panel1
@@ -41,6 +42,7 @@
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Location = new Point(27, 197);
             button1.Name = "button1";
             button1.Size = new Size(250, 100);
@@ -49,11 +51,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(27, 49);
+            button2.Name = "button2";
+            button2.Size = new Size(250, 100);
+            button2.TabIndex = 3;
+            button2.Text = "Játék";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2278, 1397);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(panel1);
             Name = "Form1";
@@ -65,5 +78,6 @@
         #endregion
         private Panel panel1;
         private Button button1;
+        private Button button2;
     }
 }

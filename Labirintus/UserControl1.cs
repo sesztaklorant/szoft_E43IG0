@@ -12,11 +12,11 @@ namespace Labirintus
 {
     public partial class UserControl1 : UserControl
     {
-        
-
         int counter = 0;
 
         bool firsttime = true;
+
+        public string utvonal { get; set; }
 
         DateTime startTime;
         public UserControl1()
@@ -44,7 +44,7 @@ namespace Labirintus
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader("maze1.txt");
+            StreamReader sr = new StreamReader(utvonal);
             int y = 0;
             while (!sr.EndOfStream)
             {
@@ -88,12 +88,11 @@ namespace Labirintus
             Controls.Add(player);
 
             KeyDown += UserControl1_KeyDown;
-
-            timer1.Tick += Timer1_Tick;
-
         }
+
         private void UserControl1_KeyDown(object? sender, KeyEventArgs e)
         {
+            timer1.Tick += Timer1_Tick;
 
             int x = player.Location.X;
             int y = player.Location.Y;
@@ -118,23 +117,39 @@ namespace Labirintus
                 y += 20;
             }
 
-
-
-            var wall = bricks.FirstOrDefault(w => w.Location.X == x && w.Location.Y == y);
-            var s = start.FirstOrDefault(w => w.Location.X == x && w.Location.Y == y);
-            var c = cel.FirstOrDefault(w => w.Location.X == x && w.Location.Y == y);
-            if (wall == null)
-            {
-                player.Location = new Point(x, y);
-                counter++;
-            }
-
             if (firsttime)
             {
                 startTime = DateTime.Now;
                 timer1.Start();
                 firsttime = false;
             }
+
+            var wall = bricks.FirstOrDefault(w => w.Location.X == x && w.Location.Y == y);
+            var s = start.FirstOrDefault(w => w.Location.X == x && w.Location.Y == y);
+            var c = cel.FirstOrDefault(w => w.Location.X == x && w.Location.Y == y);
+            if (wall == null && s == null)
+            {
+                player.Location = new Point(x, y);
+                counter++;
+            }
+            if (c != null)
+            {
+                timer1.Stop();
+                Form2 form2 = new Form2();
+                form2.lepesszam = (counter - 1).ToString();
+                TimeSpan elapsed = DateTime.Now - startTime;
+                form2.jatekido = elapsed.ToString(@"hh\:mm\:ss");
+                if(form2.ShowDialog() == DialogResult.Continue)
+                {
+                    player.Location = new Point(20, 20);
+                    label1.Text = "0";
+                    counter = 0;
+                    label2.Text = "00:00:00";
+                    firsttime = true;
+                };
+            }
+
+            
 
             label1.Text = counter.ToString();
 

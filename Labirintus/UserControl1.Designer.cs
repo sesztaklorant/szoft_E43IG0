@@ -32,12 +32,14 @@
             label1 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 1269);
+            label1.Location = new Point(220, 1269);
             label1.Name = "label1";
             label1.Size = new Size(34, 41);
             label1.TabIndex = 0;
@@ -46,16 +48,36 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(220, 1269);
+            label2.Location = new Point(514, 1269);
             label2.Name = "label2";
             label2.Size = new Size(128, 41);
             label2.TabIndex = 1;
             label2.Text = "00:00:00";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(30, 1269);
+            label3.Name = "label3";
+            label3.Size = new Size(170, 41);
+            label3.TabIndex = 2;
+            label3.Text = "Lépésszám:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(354, 1269);
+            label4.Name = "label4";
+            label4.Size = new Size(135, 41);
+            label4.TabIndex = 3;
+            label4.Text = "Játékidő:";
+            // 
             // UserControl1
             // 
             AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "UserControl1";
@@ -70,5 +92,7 @@
         private Label label1;
         private System.Windows.Forms.Timer timer1;
         private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
